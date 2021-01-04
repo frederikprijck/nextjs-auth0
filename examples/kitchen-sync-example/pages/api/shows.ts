@@ -7,7 +7,13 @@ export default withApiAuthRequired(async function shows(req, res) {
       scopes: ['read:shows']
     });
 
-    const response = await fetch('http://localhost:3001/api/my/shows', {
+    const baseURL =
+      process.env.AUTH0_BASE_URL?.indexOf('http') === 0
+        ? process.env.AUTH0_BASE_URL
+        : `https://${process.env.AUTH0_BASE_URL}`;
+
+    // This is a contrived example, normally your external API would exist on another domain.
+    const response = await fetch(baseURL + '/api/my/shows', {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
