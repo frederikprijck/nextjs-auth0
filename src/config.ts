@@ -34,8 +34,7 @@ export const getParams = (params?: ConfigParameters): ConfigParameters => {
     AUTH0_COOKIE_TRANSIENT,
     AUTH0_COOKIE_HTTP_ONLY,
     AUTH0_COOKIE_SECURE,
-    AUTH0_COOKIE_SAME_SITE,
-    TEST
+    AUTH0_COOKIE_SAME_SITE
   } = process.env;
 
   console.log('AUTH0_BASE_URL', AUTH0_BASE_URL);
