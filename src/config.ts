@@ -38,7 +38,7 @@ export const getParams = (params?: ConfigParameters): ConfigParameters => {
     TEST
   } = process.env;
 
-  console.log('TEST', TEST);
+  console.log('AUTH0_BASE_URL', AUTH0_BASE_URL);
 
   return {
     secret: AUTH0_SECRET,
