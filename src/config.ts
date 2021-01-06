@@ -39,9 +39,9 @@ export const getParams = (params?: ConfigParameters): ConfigParameters => {
   
 
   const baseURL =
-      process.env.AUTH0_BASE_URL?.indexOf('http') === 0
-        ? process.env.AUTH0_BASE_URL
-        : `https://${process.env.AUTH0_BASE_URL}`;
+      AUTH0_BASE_URL?.indexOf('http') === 0
+        ? AUTH0_BASE_URL
+        : `https://${AUTH0_BASE_URL}`;
 
   return {
     secret: AUTH0_SECRET,
