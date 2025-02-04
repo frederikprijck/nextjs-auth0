@@ -1,19 +1,26 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
-import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
-import { NextApiRequest, NextApiResponse } from "next/types";
+import type { IncomingMessage, ServerResponse } from "node:http"
+import { cookies } from "next/headers"
+import { NextRequest, NextResponse } from "next/server"
+import { NextApiRequest, NextApiResponse } from "next/types"
 
-
-
-import { AccessTokenError, AccessTokenErrorCode, FederatedConnectionAccessTokenErrorCode, FederatedConnectionsAccessTokenError, SdkError } from "../errors";
-import { SessionData, SessionDataStore } from "../types";
-import { AuthClient, AuthorizationParameters, BeforeSessionSavedHook, OnCallbackHook, RoutesOptions } from "./auth-client";
-import { RequestCookies, ResponseCookies } from "./cookies";
-import { AbstractSessionStore, SessionConfiguration, SessionCookieOptions } from "./session/abstract-session-store";
-import { StatefulSessionStore } from "./session/stateful-session-store";
-import { StatelessSessionStore } from "./session/stateless-session-store";
-import { TransactionCookieOptions, TransactionStore } from "./transaction-store";
-
+import { AccessTokenError, AccessTokenErrorCode, FederatedConnectionAccessTokenErrorCode, FederatedConnectionsAccessTokenError, SdkError } from "../errors"
+import { SessionData, SessionDataStore } from "../types"
+import {
+  AuthClient,
+  AuthorizationParameters,
+  BeforeSessionSavedHook,
+  OnCallbackHook,
+  RoutesOptions,
+} from "./auth-client"
+import { RequestCookies, ResponseCookies } from "./cookies"
+import {
+  AbstractSessionStore,
+  SessionConfiguration,
+  SessionCookieOptions,
+} from "./session/abstract-session-store"
+import { StatefulSessionStore } from "./session/stateful-session-store"
+import { StatelessSessionStore } from "./session/stateless-session-store"
+import { TransactionCookieOptions, TransactionStore } from "./transaction-store"
 
 interface Auth0ClientOptions {
   // authorization server configuration
@@ -450,6 +457,9 @@ export class Auth0Client {
     ) {
       let federatedConnectionTokenSets;
 
+      // If we already had the federated connection token set in the session
+      // we need to update the item in the array
+      // If not, we need to add it.
       if (existingFederatedConnectionTokenSet) {
         federatedConnectionTokenSets = session.federatedConnectionTokenSets?.map(tokenSet => tokenSet.connection === connection ? federatedConnectionTokenSet : tokenSet)
       } else {
