@@ -63,3 +63,18 @@ export interface User {
 
   [key: string]: any
 }
+
+/**
+ * Options for retrieving a federated connection access token.
+ */
+export interface GetFederatedConnectionAccessTokenOptions {
+  /**
+   * The connection name for while you want to retrieve the access token.
+   */
+  connection: string;
+
+  /**
+   * An optiona login hint to pass to the authorization server.
+   */
+  login_hint?: string;
+}
